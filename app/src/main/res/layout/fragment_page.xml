@@ -3,8 +3,7 @@
     android:id="@+id/frame_layout_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/selector"
-    tools:context="luongvo.com.todolistminimal.PageFragment">
+    android:background="@drawable/selector">
 
     <!--   Before
        <ListView

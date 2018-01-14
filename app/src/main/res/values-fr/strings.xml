@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Minitask</string>
+
     <string name="about">A propos</string>
     <string name="cleaning">En cours de nettoyage...</string>
     <string name="add_todo_item">Ajouter une tâche</string>

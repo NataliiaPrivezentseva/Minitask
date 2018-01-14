@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Minitask</string>
+    <string name="app_name">Minitask</string>
     <string name="about">O aplikacji</string>
 
+    <string name="no_reminder">There is not a reminder for this activity!</string>
     <string name="cleaning">Czyszczenie...</string>
     <string name="add_todo_item">Dodaj zadanie</string>
     <string name="add_todo_item_hint">Twoje zadanie</string>
@@ -20,15 +21,8 @@
     <string name="detail">Detale</string>
     <string name="clean_all_done">Usuń zrobione zadania</string>
     <string name="app_version">Wersja 1.0</string>
-    <string name="made_by" translatable="false">Autor: Luong Tran Thanh Vo</string>
     <string name="contact_me">Kontakt ze mną</string>
     <string name="support_me">Wspieraj mnie</string>
-    <string name="my_email" translatable="false">thanh.luong.for.fun@gmail.com</string>
-    <string name="github_acc" translatable="false">github.com/LewisVo</string>
-    <string name="twitter_acc" translatable="false">twitter.com/MiracleLuong</string>
-    <string name="facebook_acc" translatable="false">facebook.com/seeknd3stroy</string>
-    <string name="patreon_acc" translatable="false">patreon.com/luongtranthanhvo</string>
-    <string name="paypal_acc" translatable="false">paypal.me/LuongTranThanhVo</string>
 
     <string name="delete_message">Jesteś pewien, że chcesz usunąc to zadanie?</string>
     <string name="delete">Usuń</string>
