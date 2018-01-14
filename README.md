@@ -21,6 +21,8 @@ Will be on the Google Play Store soon, actually on Alpha testing.
 PRs and discussions are welcomed. Translation is also appreciated.
 
 Contributors:
+
+https://github.com/LewisVo/Minitask (original developer)
   
   https://github.com/danielblokus
 
