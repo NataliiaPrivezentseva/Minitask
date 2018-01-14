@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="luongvo.com.todolistminimal.MainActivity">
+    tools:context="redlor.it.minitask.MainActivity">
 
     <LinearLayout
         android:id="@+id/mainLayout"
