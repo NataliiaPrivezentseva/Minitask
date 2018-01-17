@@ -3,16 +3,9 @@
     android:id="@+id/frame_layout_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/selector">
+    android:background="@drawable/selector"
+    tools:context=".PageFragment">
 
-    <!--   Before
-       <ListView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:id="@+id/todoList">
-       </ListView>-->
-
-    <!--After-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/to_do_list"
         android:layout_width="match_parent"

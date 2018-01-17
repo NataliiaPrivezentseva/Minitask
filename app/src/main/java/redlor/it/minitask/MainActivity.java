@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -206,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
 
         pager.setCurrentItem(mCurrentPage);
         changeColor(mCurrentPage);
-
+        pager.setOffscreenPageLimit(3);
 
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -242,7 +243,10 @@ public class MainActivity extends AppCompatActivity {
         Window window = this.getWindow();
 
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(actionBarColor)));
-        window.setStatusBarColor(Color.parseColor(indicatorColor));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(Color.parseColor(indicatorColor));
+        }
+
         tabStrip.setBackground(new ColorDrawable((Color.parseColor(tabStripColor))));
         tabStrip.setIndicatorColor(Color.parseColor(indicatorColor));
         actionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(actionBarColor)));
