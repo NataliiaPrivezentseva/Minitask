@@ -31,6 +31,8 @@ Translations:
   Italian: https://github.com/redlor
   
   Polish: https://github.com/danielblokus
+  
+  French: https://github.com/Bradzer
 
 ## App icon credit
 https://www.flaticon.com/free-icon/startup_341435#term=rocket&page=2&position=33  
