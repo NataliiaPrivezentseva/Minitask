@@ -12,15 +12,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-      <!--  <ImageSwitcher
-            android:id="@+id/descriptImage"
-            android:layout_width="match_parent"
-            android:layout_height="160dp" />
--->
-
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="@dimen/main_image_height"
             android:id="@+id/tabImage"
             android:scaleType="centerCrop"/>
 
@@ -28,9 +22,9 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#757de8"
-            app:pstsIndicatorColor="#3f51b5"
-            app:pstsIndicatorHeight="4dp"
+            android:background="@color/strip_background"
+            app:pstsIndicatorColor="@color/indicator_color"
+            app:pstsIndicatorHeight="@dimen/indicator_height"
             app:pstsShouldExpand="true"
             app:pstsTabTextColor="@android:color/white" />
 
@@ -46,10 +40,10 @@
         android:id="@+id/actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
+        android:layout_margin="@dimen/floating_margin"
         android:src="@drawable/ic_plus_white_24dp"
-        app:backgroundTint="#303f9f"
-        app:elevation="15dp"
+        app:backgroundTint="@color/main_floating_color"
+        app:elevation="@dimen/floating_elevation"
         app:layout_anchor="@id/mainLayout"
         app:layout_anchorGravity="bottom|right|end" />
 
