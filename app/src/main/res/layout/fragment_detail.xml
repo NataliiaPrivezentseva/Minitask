@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:background="#3f51b5"
+                android:background="@color/background_upper"
                 android:gravity="center">
 
                 <TextView
@@ -28,15 +28,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp"
+                    android:layout_marginLeft="@dimen/edit_text_margin"
+                    android:layout_marginRight="@dimen/edit_text_margin"
                     android:ellipsize="end"
                     android:gravity="start|bottom"
                     android:lineSpacingExtra="10dp"
                     android:maxLines="5"
                     android:text="@string/click_item"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="@dimen/click_item_text_size" />
 
             </LinearLayout>
 
@@ -44,30 +44,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:background="#757de8"
+                android:background="@color/background_lower"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="@dimen/padding_lower">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/button_margin"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="8dp"
+                        android:padding="@dimen/padding_lower"
                         android:src="@drawable/ic_access_alarms_white_36dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
+                        android:padding="@dimen/info_padding"
                         android:text="@string/reminder_info"
                         android:textColor="@android:color/white"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/text_reminder_set" />
 
                 </LinearLayout>
 
@@ -84,8 +84,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/not_found"
-                        android:textColor="#ffff00"
-                        android:textSize="20sp"
+                        android:textColor="@color/set_text_color"
+                        android:textSize="@dimen/not_found_text_size"
                         android:textStyle="italic" />
 
 
@@ -98,7 +98,7 @@
             android:id="@+id/editTodoBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="25dp"
+            android:layout_margin="@dimen/floating_margin"
             android:src="@drawable/ic_mode_edit_white_24dp"
             app:layout_anchor="@id/todoDetailLayout"
             app:layout_anchorGravity="bottom|right|end" />
@@ -107,7 +107,7 @@
             android:id="@+id/deleteTodoBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="25dp"
+            android:layout_margin="@dimen/floating_margin"
             android:src="@drawable/ic_delete_sweep_white_24dp"
             app:layout_anchor="@id/todoDetailLayout"
             app:layout_anchorGravity="bottom|left|start" />

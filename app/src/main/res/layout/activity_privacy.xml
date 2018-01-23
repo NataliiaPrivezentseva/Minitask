@@ -13,9 +13,9 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="@dimen/image_about"
+            android:layout_height="@dimen/image_about"
+            android:layout_marginTop="@dimen/image_margin"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"
             tools:layout_editor_absoluteX="0dp"
@@ -24,23 +24,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/title_margin"
             android:gravity="center"
             android:text="@string/privacy_title"
-            android:textColor="#303f9f"
-            android:textSize="30sp"
+            android:textColor="@color/title_color"
+            android:textSize="@dimen/title_text_size"
             android:textStyle="bold" />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
+            android:layout_margin="@dimen/paragraph_margin"
             android:textAlignment="textStart"
             android:gravity="start"
             android:text="@string/privacy_policy"
             android:textColor="@android:color/black"
-            android:textSize="20sp" />
+            android:textSize="@dimen/paragraph_text_size" />
 
 
     </LinearLayout>

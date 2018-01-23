@@ -12,7 +12,7 @@
         android:id="@+id/checkDone"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:buttonTint="#1a237e"
+        android:buttonTint="@color/check_tint"
         android:focusable="false" />
 
     <TextView
@@ -23,8 +23,8 @@
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
-        android:textColor="#000051"
-        android:textSize="14sp" />
+        android:textColor="@color/item_text_color"
+        android:textSize="@dimen/item_text_size" />
 
     <ImageView
         android:id="@+id/clockReminder"
