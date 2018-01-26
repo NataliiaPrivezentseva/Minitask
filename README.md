@@ -9,9 +9,9 @@ Redlor: I am taking on the development of this app from November 2017. The aim i
 
 ## Download  
 
-<a href='https://play.google.com/store/apps/details?id=luongvo.com.todolistminimal&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>  
+<a href='https://play.google.com/store/apps/details?id=redlor.it.minitask'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>  
 
-Will be on the Google Play Store soon, actually on Alpha testing.
+Actually on Open Beta testing.
 
 
 ## Screenshot
