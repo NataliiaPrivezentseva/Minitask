@@ -1,6 +1,7 @@
 package redlor.it.minitask;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -65,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private String mUsername;
     private int mCurrentPage;
+
+    private  static Context mContext;
+
+    public static Context getContext() {
+        return mContext;
+    }
+
+    public static void setContext(Context mContext1) {
+        mContext = mContext1;
+    }
 
     // Prevent dialog dismiss when orientation changes.
     private static void doKeepDialog(Dialog dialog) {
@@ -304,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
 
                                             // Delete checked items from Firebase Database
                                             updateFirebase = new UpdateFirebase();
-                                            updateFirebase.deleteChecked();
+                                            updateFirebase.deleteChecked(MainActivity.this);
                                             Toast.makeText(MainActivity.this, R.string.deleted_all_task, Toast.LENGTH_SHORT).show();
                                             finish();
                                             startActivity(getIntent());

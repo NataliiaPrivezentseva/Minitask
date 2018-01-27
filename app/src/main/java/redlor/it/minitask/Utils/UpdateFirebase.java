@@ -1,5 +1,7 @@
 package redlor.it.minitask.Utils;
 
+import android.content.Context;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -11,7 +13,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-import redlor.it.minitask.MainActivity;
 import redlor.it.minitask.ToDoItem;
 
 /**
@@ -21,7 +22,7 @@ import redlor.it.minitask.ToDoItem;
 
 public class UpdateFirebase {
 
-    MainActivity mainActivity;
+    MyDateTimeUtils dateTimeUtils;
     // Get a reference to the Database
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private String uid = firebaseUser.getUid();
@@ -30,6 +31,7 @@ public class UpdateFirebase {
 
     public UpdateFirebase() {
     }
+
 
     // This method add a new item to Firebase Database
     public void addItem(ToDoItem toDoItem) {
@@ -72,14 +74,24 @@ public class UpdateFirebase {
     }
 
     // This method delete all the checked items from Firebase
-    public void deleteChecked() {
+    public void deleteChecked(final Context context) {
         databaseReference.keepSynced(true);
+        dateTimeUtils = new MyDateTimeUtils();
         Query query = databaseReference.orderByChild("done").equalTo(true);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    ToDoItem toDoItem = dataSnapshot1.getValue(ToDoItem.class);
+                    String content = toDoItem.getContent();
+                    boolean reminder = toDoItem.getHasReminder();
+                    if (reminder) {
+                        dateTimeUtils.cancelScheduledNotification(dateTimeUtils.getNotification(content, context),
+                                context, (int) 0);
+                    }
+
                     dataSnapshot1.getRef().removeValue();
+
                 }
             }
 

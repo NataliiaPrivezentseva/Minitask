@@ -25,18 +25,8 @@
     <string name="app_version">Versao 2.0</string>
     <string name="author">Autor: Lorenzo Redaelli</string>
     <string name="initial_idea">Da idea e do desenvolvimento inicial de: </string>
-    <string name="original_author" translatable="false">Luong Tran Thanh Vo</string>
     <string name="contact_me">Voce pode entrar em contato em</string>
     <string name="support_me">Nos suporte</string>
-    <string name="my_email" translatable="false">thanh.luong.for.fun@gmail.com</string>
-    <string name="github_acc" translatable="false">github.com/LewisVo</string>
-    <string name="twitter_acc" translatable="false">twitter.com/MiracleLuong</string>
-    <string name="facebook_acc" translatable="false">facebook.com/seeknd3stroy</string>
-    <string name="patreon_acc" translatable="false">patreon.com/luongtranthanhvo</string>
-    <string name="paypal_acc" translatable="false">paypal.me/LuongTranThanhVo</string>
-
-    <string name="github_redlor" translatable="false">github.com/redlor</string>
-    <string name="paypal_redlor" translatable="false">paypal.me/redlor</string>
 
     <!--Change, strings for the menu dialog-->
     <string name="delete_message">Tem certeza que deseja excluir essa tarefa?</string>
@@ -48,19 +38,12 @@
 
     <string name="click_item">Clique em um item</string>
 
-    <string name="facebook_app_id" translatable="false">298382557233568</string>
-    <string name="fb_login_protocol_scheme" translatable="false">fb298382557233568</string>
-
-    <string name="sign_out" translatable="false">Sign Out</string>
-
-    <string name="inbox" translatable="false">INBOX</string>
     <string name="today">HOJE</string>
     <string name="next_7_days">PROXIMO 7 DIAS</string>
 
     <!--String for deleteTodo button's dialog -->
     <string name="delete_single_task_message">Tem certeza que deseja deletar essa tarefa?</string>
 
-    <string name="privacy_title" translatable="false">Privacy Policy</string>
     <string name="privacy_policy" translatable="false">
 
     Lorenzo Redaelli criou o aplicativo Minitask como um aplicativo Open Source. Este serviço é fornecido por Lorenzo Redaelli sem nenhum custo e destina-se a ser usado como está.

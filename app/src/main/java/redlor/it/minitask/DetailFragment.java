@@ -130,15 +130,17 @@ public class DetailFragment extends Fragment {
 //                                        Toast.makeText(getActivity(), R.string.item_deleted, Toast.LENGTH_SHORT).show();
 
                                     ToDoItem toDoItem = new ToDoItem(content, done, reminder, hasReminder, mItemId);
+
+                                    // remove existing scheduled notification if existed
+                                    if (!reminder.equals(" "))
+                                        dateTimeUtils.cancelScheduledNotification(dateTimeUtils.getNotification(content, getContext()),
+                                                getContext(), (int) oldRowId);
+
                                     updateFirebase = new UpdateFirebase();
                                     updateFirebase.deleteItem(toDoItem);
 
                                     Activity a = getActivity();
                                     if (a != null) {
-                                        //getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-
-                                        //   getActivity().finish();
-
                                         // This intent is for the dual pane mode, to refresh the UI
                                         a.startActivity(new Intent(getContext(), MainActivity.class));
                                         a.overridePendingTransition(0, 0);

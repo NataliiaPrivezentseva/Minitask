@@ -36,9 +36,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/paragraph_margin"
-            android:textAlignment="textStart"
             android:gravity="start"
             android:text="@string/privacy_policy"
+            android:textAlignment="textStart"
             android:textColor="@android:color/black"
             android:textSize="@dimen/paragraph_text_size" />
 
