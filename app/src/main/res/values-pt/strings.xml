@@ -44,7 +44,7 @@
     <!--String for deleteTodo button's dialog -->
     <string name="delete_single_task_message">Tem certeza que deseja deletar essa tarefa?</string>
 
-    <string name="privacy_policy" translatable="false">
+    <string name="privacy_policy">
 
     Lorenzo Redaelli criou o aplicativo Minitask como um aplicativo Open Source. Este serviço é fornecido por Lorenzo Redaelli sem nenhum custo e destina-se a ser usado como está.
 
