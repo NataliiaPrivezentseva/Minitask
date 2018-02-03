@@ -33,6 +33,8 @@ Translations:
   Polish: https://github.com/danielblokus
   
   French: https://github.com/Bradzer
+  
+  Portuguese: https://github.com/rickpms
 
 ## App icon credit
 https://www.flaticon.com/free-icon/startup_341435#term=rocket&page=2&position=33  
