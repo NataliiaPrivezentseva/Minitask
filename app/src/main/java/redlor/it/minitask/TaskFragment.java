@@ -29,6 +29,7 @@ import com.google.firebase.database.Query;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 import redlor.it.minitask.Utils.SimpleDividerItemDecoration;
 import redlor.it.minitask.viewholder.FirebaseViewHolder;
@@ -38,7 +39,6 @@ import static redlor.it.minitask.MainActivity.mTwoPane;
 public class TaskFragment extends Fragment {
     DatabaseReference mDatabaseReference;
     FirebaseRecyclerAdapter mFirebaseAdapter;
-    private RecyclerView mRecyclerView;
     private View view;
     private Toast mToast;
 
@@ -71,11 +71,10 @@ public class TaskFragment extends Fragment {
     }
 
 
-    void firebaseLoad(){
+    void firebaseLoad() {
         final FirebaseRecyclerOptions<ToDoItem> options = getToDoItemFirebaseRecyclerOptions();
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<ToDoItem, FirebaseViewHolder>(options
-        ) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<ToDoItem, FirebaseViewHolder>(options) {
 
             @Override
             public FirebaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -86,28 +85,13 @@ public class TaskFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(final FirebaseViewHolder viewHolder, final int position, final ToDoItem toDoItem) {
-                // set the content of the item
-                viewHolder.content.setText(toDoItem.getContent());
-                // set the checkbox status of the item
-                viewHolder.checkDone.setChecked(toDoItem.getDone());
-                // check if checkbox is checked, then strike through the text
-                // this is for the first time UI render
-                if (viewHolder.checkDone.isChecked()) {
-                    viewHolder.content.setPaintFlags(viewHolder.content.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                } else {
-                    viewHolder.content.setPaintFlags(viewHolder.content.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-                }
+                setViewHolderTextAndPaintFlag(viewHolder, toDoItem);
 
                 // render the clock icon if the item has a reminder
-                // and add a animation for expired item
                 if (toDoItem.getHasReminder()) {
                     viewHolder.clockReminder.setVisibility(View.VISIBLE);
-                    Calendar c = Calendar.getInstance();
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    String currentDateTime = sdf.format(c.getTime());
-                    if (currentDateTime.compareTo(toDoItem.getReminderDate()) > 0) {
-                        setAnimation(viewHolder);
-                    }
+                    // add an animation for the expired item
+                    setAnimationIfTaskIsExpired(viewHolder, toDoItem);
                 } else {
                     viewHolder.clockReminder.setVisibility(View.INVISIBLE);
                 }
@@ -120,8 +104,23 @@ public class TaskFragment extends Fragment {
         getRecyclerView();
     }
 
+    void setViewHolderTextAndPaintFlag(FirebaseViewHolder viewHolder, ToDoItem toDoItem) {
+        // set the content of the item
+        viewHolder.content.setText(toDoItem.getContent());
+        // set the checkbox status of the item
+        viewHolder.checkDone.setChecked(toDoItem.getDone());
+        // check if checkbox is checked, then strike through the text
+        // this is for the first time UI render
+        if (viewHolder.checkDone.isChecked()) {
+            viewHolder.content.setPaintFlags(viewHolder.content.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            viewHolder.content.setPaintFlags(viewHolder.content.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+        }
+    }
+
     FirebaseRecyclerOptions<ToDoItem> getToDoItemFirebaseRecyclerOptions() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        assert firebaseUser != null;
         final String uid = firebaseUser.getUid();
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid).child("toDoItems");
@@ -177,8 +176,7 @@ public class TaskFragment extends Fragment {
                 if (mToast != null) {
                     mToast.cancel();
                 }
-                boolean hasReminder = toDoItem.getHasReminder();
-                if (hasReminder) {
+                if (toDoItem.getHasReminder()) {
                     String reminder = toDoItem.getReminderDate();
                     mToast = Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.reminder_info) + " " + reminder, Toast.LENGTH_SHORT);
                     mToast.show();
@@ -209,24 +207,29 @@ public class TaskFragment extends Fragment {
                     map.put("done", false);
                     mDatabaseReference.child(id).updateChildren(map);
                     viewHolder.checkDone.setOnCheckedChangeListener(null);
-
                 }
             }
         });
     }
 
     void getRecyclerView() {
-        mRecyclerView = view.findViewById(R.id.to_do_list);
+        RecyclerView mRecyclerView = view.findViewById(R.id.to_do_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
         mRecyclerView.setAdapter(mFirebaseAdapter);
     }
 
-    void setAnimation(FirebaseViewHolder viewHolder) {
-        TranslateAnimation animation = new TranslateAnimation(0, 0, 0, 6);
-        animation.setDuration(400);
-        animation.setInterpolator(new LinearInterpolator());
-        animation.setRepeatCount(Animation.INFINITE);
-        viewHolder.clockReminder.setAnimation(animation);
+    void setAnimationIfTaskIsExpired(FirebaseViewHolder viewHolder, ToDoItem toDoItem) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
+                Locale.getDefault());
+        String currentDateTime = sdf.format(Calendar.getInstance().getTime());
+
+        if (currentDateTime.compareTo(toDoItem.getReminderDate()) > 0) {
+            TranslateAnimation animation = new TranslateAnimation(0, 0, 0, 6);
+            animation.setDuration(400);
+            animation.setInterpolator(new LinearInterpolator());
+            animation.setRepeatCount(Animation.INFINITE);
+            viewHolder.clockReminder.setAnimation(animation);
+        }
     }
 }

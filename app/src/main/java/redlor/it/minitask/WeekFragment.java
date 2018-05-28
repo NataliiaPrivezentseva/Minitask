@@ -1,6 +1,5 @@
 package redlor.it.minitask;
 
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import redlor.it.minitask.viewholder.FirebaseViewHolder;
 
@@ -31,8 +31,7 @@ public class WeekFragment extends TaskFragment {
     void firebaseLoad() {
         final FirebaseRecyclerOptions<ToDoItem> options = getToDoItemFirebaseRecyclerOptions();
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<ToDoItem, FirebaseViewHolder>(options
-        ) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<ToDoItem, FirebaseViewHolder>(options) {
 
             @Override
             public FirebaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,13 +43,11 @@ public class WeekFragment extends TaskFragment {
             @Override
             protected void onBindViewHolder(final FirebaseViewHolder viewHolder, final int position, final ToDoItem toDoItem) {
                 Calendar calendarWeek = Calendar.getInstance();
-                Calendar calendarItem = Calendar.getInstance();
-                Calendar calendarToday = Calendar.getInstance();
                 calendarWeek.add(Calendar.DAY_OF_YEAR, 7);
-                SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+                Calendar calendarItem = Calendar.getInstance();
+                SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 String completeTime = toDoItem.getReminderDate();
-
                 if (completeTime != null && !completeTime.equals(" ")) {
                     try {
                         itemDate = myFormat.parse(completeTime);
@@ -58,30 +55,17 @@ public class WeekFragment extends TaskFragment {
                         e.printStackTrace();
                     }
                     calendarItem.setTime(itemDate);
-
                 } else {
                     calendarItem.add(Calendar.DAY_OF_YEAR, 8);
                 }
 
+                Calendar calendarToday = Calendar.getInstance();
+
                 if (calendarItem.after(calendarToday) && calendarItem.before(calendarWeek)) {
+                    setViewHolderTextAndPaintFlag(viewHolder, toDoItem);
 
-                    // set the content of the item
-                    viewHolder.content.setText(toDoItem.getContent());
-                    // set the checkbox status of the item
-                    viewHolder.checkDone.setChecked(toDoItem.getDone());
-                    // check if checkbox is checked, then strike through the text
-                    // this is for the first time UI render
-                    if (viewHolder.checkDone.isChecked()) {
-                        viewHolder.content.setPaintFlags(viewHolder.content.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                    } else {
-                        viewHolder.content.setPaintFlags(viewHolder.content.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-                    }
-
-                    // render the clock icon if the item has a reminder
-                    if (toDoItem.getHasReminder())
-                        viewHolder.clockReminder.setVisibility(View.VISIBLE);
-                    else
-                        viewHolder.clockReminder.setVisibility(View.INVISIBLE);
+                    // render the clock icon for the item
+                    viewHolder.clockReminder.setVisibility(View.VISIBLE);
 
                     createOnCheckedListener(viewHolder, position, toDoItem);
                     createOnClickListener(viewHolder, toDoItem);
@@ -91,7 +75,7 @@ public class WeekFragment extends TaskFragment {
                 }
             }
         };
-        
+
         getRecyclerView();
         mFirebaseAdapter.startListening();
     }
