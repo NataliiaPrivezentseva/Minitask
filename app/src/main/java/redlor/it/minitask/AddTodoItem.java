@@ -149,7 +149,7 @@ public class AddTodoItem extends AppCompatActivity implements DatePickerDialog.O
                 if (!validateAllInput())
                     return;
                 // get content input from user
-                content = materialTextInput.getText().toString();
+                content = upperCaseFirst(materialTextInput.getText().toString());
                 // no error found, start adding to database
 
                 // this check is used for update/edit a todoItem case
@@ -313,5 +313,12 @@ public class AddTodoItem extends AppCompatActivity implements DatePickerDialog.O
         reminderText.setText(getString(R.string.reminder_set_at) + " " + date + " " + time);
     }
 
-
+    private static String upperCaseFirst(String value) {
+        // convert String to char array
+        char[] array = value.toCharArray();
+        // modify first element in array
+        array[0] = Character.toUpperCase(array[0]);
+        // return new string
+        return new String(array);
+    }
 }
